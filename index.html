@@ -1,0 +1,237 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trip-Track | Travel Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <aside class="sidebar">
+        <h2 class="logo">✈ Trip-Track</h2>
+        <p class="side-label">WORKSPACE</p>
+
+        <a href="#dashboard" class="nav-link active">🏠 Dashboard</a>
+        <a href="#trips" class="nav-link">🧳 My Trips</a>
+        <a href="#expenses" class="nav-link">💳 Expenses</a>
+        <a href="#safety" class="nav-link">🛡 Travel Safety</a>
+
+        <div class="sidebar-bottom">
+            <div class="profile-icon">TT</div>
+            <div>
+                <strong>My Travel Space</strong>
+                <p>Every journey matters</p>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+            <div>
+                <p class="greeting">YOUR PERSONAL TRAVEL PLANNER</p>
+                <h1>Travel Dashboard 🌍</h1>
+                <p class="subtitle">Plan your journeys. Track your expenses. Make memories.</p>
+            </div>
+            <a href="#add-trip" class="primary-button top-button">+ Add New Trip</a>
+        </header>
+
+        <section id="dashboard">
+            <div class="hero">
+                <div class="hero-content">
+                    <span class="hero-tag">YOUR NEXT ADVENTURE STARTS HERE</span>
+                    <h2>Collect moments,<br>not just miles.</h2>
+                    <p>Keep your trips, plans and travel expenses organized in one place.</p>
+                    <a href="#add-trip" class="hero-button">Plan a Trip →</a>
+                </div>
+                <div class="hero-decoration">🌄</div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon purple">🧳</div>
+                    <p>Total Trips</p>
+                    <h2 id="totalTrips">0</h2>
+                    <span>Trips in your planner</span>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon green">📍</div>
+                    <p>Upcoming Trips</p>
+                    <h2 id="upcomingTrips">0</h2>
+                    <span>Journeys ahead</span>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon orange">💰</div>
+                    <p>Total Expenses</p>
+                    <h2 id="totalExpenses">₹0</h2>
+                    <span>Expenses recorded</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="add-trip" class="content-card">
+            <div class="section-heading">
+                <div>
+                    <p class="section-label">START EXPLORING</p>
+                    <h2>Plan a New Trip</h2>
+                    <p class="subtitle">Enter your travel details below.</p>
+                </div>
+                <span class="heading-emoji">🗺️</span>
+            </div>
+
+            <form id="tripForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="tripName">Trip Name</label>
+                        <input id="tripName" type="text" placeholder="e.g. Summer Vacation" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="destination">Destination</label>
+                        <input id="destination" type="text" placeholder="e.g. Goa, India" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="startDate">Start Date</label>
+                        <input id="startDate" type="date" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="endDate">End Date</label>
+                        <input id="endDate" type="date" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tripBudget">Estimated Budget (₹)</label>
+                        <input id="tripBudget" type="number" min="0" placeholder="e.g. 5000" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tripType">Travel Type</label>
+                        <select id="tripType" required>
+                            <option value="Vacation">Vacation</option>
+                            <option value="Adventure">Adventure</option>
+                            <option value="Business">Business</option>
+                            <option value="Family">Family Trip</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="primary-button">＋ Save Trip</button>
+            </form>
+        </section>
+
+        <section id="trips" class="content-card">
+            <div class="section-heading">
+                <div>
+                    <p class="section-label">YOUR JOURNEY COLLECTION</p>
+                    <h2>My Trips</h2>
+                </div>
+                <span class="heading-emoji">🎒</span>
+            </div>
+
+            <div id="tripList" class="trip-grid">
+                <div class="empty-state">
+                    <span>🧭</span>
+                    <h3>Your adventures start here!</h3>
+                    <p>Add your first trip using the form above.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="expenses" class="content-card">
+            <div class="section-heading">
+                <div>
+                    <p class="section-label">STAY ON BUDGET</p>
+                    <h2>Expense Tracker</h2>
+                    <p class="subtitle">Record and manage your travel spending.</p>
+                </div>
+                <span class="heading-emoji">💳</span>
+            </div>
+
+            <form id="expenseForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="expenseTrip">Select Trip</label>
+                        <select id="expenseTrip" required>
+                            <option value="">Add a trip first</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="expenseTitle">Expense Description</label>
+                        <input id="expenseTitle" type="text" placeholder="e.g. Hotel booking" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="expenseAmount">Amount (₹)</label>
+                        <input id="expenseAmount" type="number" min="0.01" step="0.01" placeholder="e.g. 1200" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="expenseCategory">Category</label>
+                        <select id="expenseCategory" required>
+                            <option value="Transport">Transport</option>
+                            <option value="Food">Food</option>
+                            <option value="Accommodation">Accommodation</option>
+                            <option value="Shopping">Shopping</option>
+                            <option value="Activities">Activities</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="primary-button">＋ Add Expense</button>
+            </form>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Trip</th>
+                            <th>Description</th>
+                            <th>Category</th>
+                            <th>Amount</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="expenseList">
+                        <tr>
+                            <td colspan="5" class="table-empty">No expenses added yet.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="safety" class="safety-card">
+            <div class="safety-icon">🛡️</div>
+            <div>
+                <p class="section-label">TRAVEL SMART</p>
+                <h2>Travel Safety Checklist</h2>
+                <p>Remember these essentials before starting your journey.</p>
+                <div class="checklist">
+                    <label><input type="checkbox"> Carry a valid ID</label>
+                    <label><input type="checkbox"> Keep emergency contacts handy</label>
+                    <label><input type="checkbox"> Share your itinerary with someone you trust</label>
+                    <label><input type="checkbox"> Check transport and accommodation details</label>
+                </div>
+                <p class="safety-note">Note: This checklist is a reminder, not a live emergency or location-tracking service.</p>
+            </div>
+        </section>
+
+        <footer>
+            <p>✈ Trip-Track © 2026 | Plan better. Travel smarter.</p>
+            <p>Made with care by the Trip-Track team.</p>
+        </footer>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
