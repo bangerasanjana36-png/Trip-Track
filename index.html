@@ -29,6 +29,41 @@
     </aside>
 
     <main class="main-content">
+        ```html
+<section id="authSection" class="content-card">
+    <h2>Welcome to Trip-Track</h2>
+    <p>Sign in or create an account to manage your trips.</p>
+
+    <form id="authForm">
+        <label for="authEmail">Email Address</label>
+        <input id="authEmail" type="email"
+               placeholder="Enter your email" required>
+
+        <label for="authPassword">Password</label>
+        <input id="authPassword" type="password"
+               placeholder="At least 6 characters"
+               minlength="6" required>
+
+        <button type="submit" class="primary-button" id="loginButton">
+            Sign In
+        </button>
+
+        <button type="button" class="primary-button" id="signupButton">
+            Create Account
+        </button>
+    </form>
+
+    <p id="authMessage" role="status"></p>
+
+    <div id="userSection" hidden>
+        <p>Signed in as <strong id="userEmail"></strong></p>
+        <button type="button" class="primary-button" id="logoutButton">
+            Sign Out
+        </button>
+    </div>
+</section>
+```
+
 
         <header class="topbar">
             <div>
