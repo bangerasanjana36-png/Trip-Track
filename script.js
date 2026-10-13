@@ -352,5 +352,101 @@ function renderApp() {
     renderExpenses();
 }
 
+// ===============================
+// SUPABASE LOGIN AND SIGNUP
+// ===============================
+
+const authForm = document.getElementById("authForm");
+const authMessage = document.getElementById("authMessage");
+const authSection = document.getElementById("authSection");
+const userSection = document.getElementById("userSection");
+
+async function updateAuthUI() {
+    const { data: { user }, error } =
+        await supabaseClient.auth.getUser();
+
+    if (error) {
+        authMessage.textContent = "Unable to check login status.";
+        return;
+    }
+
+    if (user) {
+        authForm.hidden = true;
+        userSection.hidden = false;
+        document.getElementById("userEmail").textContent = user.email;
+        authMessage.textContent = "You are signed in!";
+    } else {
+        authForm.hidden = false;
+        userSection.hidden = true;
+        authMessage.textContent = "Please sign in or create an account.";
+    }
+}
+
+// Create a new account
+document.getElementById("signupButton").addEventListener("click", async () => {
+    const email = document.getElementById("authEmail").value.trim();
+    const password = document.getElementById("authPassword").value;
+
+    if (!email || password.length < 6) {
+        authMessage.textContent =
+            "Enter a valid email and a password of at least 6 characters.";
+        return;
+    }
+
+    const { data, error } = await supabaseClient.auth.signUp({
+        email,
+        password
+    });
+
+    if (error) {
+        authMessage.textContent = error.message;
+        return;
+    }
+
+    authMessage.textContent = data.session
+        ? "Account created! You are signed in."
+        : "Account created! Check your email to confirm your account.";
+
+    await updateAuthUI();
+});
+
+// Sign in to an existing account
+authForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const email = document.getElementById("authEmail").value.trim();
+    const password = document.getElementById("authPassword").value;
+
+    const { error } = await supabaseClient.auth.signInWithPassword({
+        email,
+        password
+    });
+
+    if (error) {
+        authMessage.textContent = error.message;
+        return;
+    }
+
+    await updateAuthUI();
+});
+
+// Sign out
+document.getElementById("logoutButton").addEventListener("click", async () => {
+    const { error } = await supabaseClient.auth.signOut();
+
+    if (error) {
+        authMessage.textContent = error.message;
+        return;
+    }
+
+    await updateAuthUI();
+});
+
+// Check login status when the page opens
+updateAuthUI();
+```
+
+
 // Initial setup
 renderApp();
+
