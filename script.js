@@ -1,4 +1,12 @@
 
+const SUPABASE_URL = "https://kagqcksrbzgqdcfynliv.supabase.co";
+
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_cBgQ_BcP4y-_h59wALuRPA_D4Dm6YFC";
+
+const supabaseClient = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_PUBLISHABLE_KEY
+);
 
 const TRIPS_KEY = "tripTrackTrips";
 const EXPENSES_KEY = "tripTrackExpenses";
